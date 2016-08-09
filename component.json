@@ -1,0 +1,11 @@
+{
+  "name": "iproxy",
+  "description": "Image proxy middleware",
+  "version": "0.0.4",
+  "repo": "expressjs/iproxy",
+  "main": "browser.js",
+  "license": "MIT",
+  "scripts": [
+    "browser.js"
+  ]
+}

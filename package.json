@@ -1,0 +1,89 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "iproxy",
+        "scope": null,
+        "escapedName": "iproxy",
+        "name": "iproxy",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/fld/Documents/Projects/bots/messenger-bot-tutorial"
+    ]
+  ],
+  "_from": "iproxy@latest",
+  "_id": "iproxy@0.0.4",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/iproxy",
+  "_npmUser": {
+    "name": "jongleberry",
+    "email": "jonathanrichardong@gmail.com"
+  },
+  "_npmVersion": "1.3.11",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "iproxy",
+    "scope": null,
+    "escapedName": "iproxy",
+    "name": "iproxy",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/iproxy/-/iproxy-0.0.4.tgz",
+  "_shasum": "fd7d5e867026b1e33d200f5929d51af565754f72",
+  "_shrinkwrap": null,
+  "_spec": "iproxy",
+  "_where": "/Users/fld/Documents/Projects/bots/messenger-bot-tutorial",
+  "author": {
+    "name": "Jonathan Ong",
+    "email": "me@jongleberry.com",
+    "url": "http://jongleberry.com"
+  },
+  "bugs": {
+    "url": "https://github.com/expressjs/iproxy/issues",
+    "email": "me@jongleberry.com"
+  },
+  "dependencies": {
+    "fresh": "~0.2.0"
+  },
+  "description": "Image proxy middleware",
+  "devDependencies": {
+    "connect": "*",
+    "mocha": "*",
+    "should": "*",
+    "supertest": "*"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "fd7d5e867026b1e33d200f5929d51af565754f72",
+    "tarball": "https://registry.npmjs.org/iproxy/-/iproxy-0.0.4.tgz"
+  },
+  "homepage": "https://github.com/expressjs/iproxy#readme",
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "jongleberry",
+      "email": "jonathanrichardong@gmail.com"
+    }
+  ],
+  "name": "iproxy",
+  "optionalDependencies": {},
+  "readme": "# iproxy [![Build Status](https://travis-ci.org/expressjs/iproxy.png)](https://travis-ci.org/expressjs/iproxy)\n\nThis is an image proxy for node.js/browser.\nThis library is full-stack, meaning there is a backend as well as frontend library that work together.\nThe backend library is meant to be used as a connect/express middleware, but it can be used without.\nThe frontend library is optional, but it requires the backend library to work.\n\n## Use Case\n\nUser images won't always show up on your site:\n\n- Many image hosts, such as imgur, do not support HTTPS. If your site only uses HTTPS, you're going to get mixed message warnings or these images won't load at all.\n- Some image hosts block hotlinking.\n\nBoth of these problems can be solved by proxying images through your server.\nGenerally speaking, you should put this proxy instance behind a cache as this module does not cache any images.\nIf you use CloudFlare as a CDN, you can even prevent hotlinking.\n\nInspiration: [camo](https://github.com/atmos/camo).\n\n## Installation\n\nIn node.js:\n\n```bash\nnpm install iproxy\n```\n\nFor the browser, we use [component](https://github.com/component/component):\n\n```bash\ncomponent install expressjs/iproxy\n```\n\n## API\n\n### Node.js\n\nYou should mount the middleware to some prefix. For example, we'll use the prefix `/proxy`:\n\n```js\napp.use('/proxy', require('iproxy'))\n```\n\n### URLs\n\nAssume we use the prefix `/proxy`. Images are now proxied at the address `'/proxy/' + url` where `url` is the URL of the image without the protocol. ex., `/proxy/i.imgur.com/mFtyLGJ.gif` would proxy the image `http://i.imgur.com/mFtyLGJ.gif` through your server.\n\n### Browser\n\nWe want to create an `iproxy` instance with the prefix `/proxy`:\n\n```js\nvar iproxy = require('iproxy')('/proxy')\n```\n\n- `iproxy(url, callback)`\n  - `url` - the image URL you want to proxy.\n  - `callback(err, url)`\n      - `err` - if non-`null`, the image failed to load and proxy.\n      - `url` - the image URL that worked - either the original URL or the proxied URL.\n\n```js\niproxy('http://i.imgur.com/mFtyLGJ.gif', function (err, url) {\n  // Input URL will match the output URL\n  // because the image works\n  url === 'http://i.imgur.com/mFtyLGJ.gif'\n})\niproxy('https://i.imgur.com/mFtyLGJ.gif', function (err, url) {\n  // The output URL will be a proxied URL\n  // since imgur doesn't support HTTPS\n  url === '/proxy/i.imgur.com/mFtyLGJ.gif'\n})\n```\n\nNote: it's up to you what protocol you'd like to test. You may want to use `//i.imgur.com/mFtyLGJ.gif` protocol-less URLs.\n\n## License\n\nThe MIT License (MIT)\n\nCopyright (c) 2013 Jonathan Ong me@jongleberry.com\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/expressjs/iproxy.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "version": "0.0.4"
+}
